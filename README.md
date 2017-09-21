@@ -2,9 +2,6 @@
 
 Here's a guide that you may find helpful to get up and running quickly on the Pentesting with Kali course.
 
-### Changelog
-- 20170831 Added document structure and initial content for setting up the VM
-
 ### Your PWK ID
 
 After enrolling in the PWK course for the first time, you'll be assigned an OS number, which will look something like "OS-13245".  You'll also be assigned a password, which will be random and unchangeable.  When accessing the lab, the forums, or IRC, you'll generally use your OS number as your username.  
@@ -106,7 +103,7 @@ Test your new connection, no password needed:
 root@kali:~# openvpn ~/offsec.ovpn
 ```
 
-**Extra credit:**  Are you extra lazy?  Don't like to leave a terminal open to run the VPN?  Configure aliases to connect and disconnect with one command each.
+*Extra credit:*  Are you extra lazy?  Don't like to leave a terminal open to run the VPN?  Configure aliases to connect and disconnect with one command each.
 
 ```bash
 root@kali:~# echo alias connect=\"openvpn /root/offsec.ovpn&\" >> ~/.bash_aliases
