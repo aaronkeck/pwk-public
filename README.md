@@ -16,7 +16,12 @@ This section covers the basics you need to get your VM downloaded, configured, a
 ### Your materials
 You'll recieve a number of materials during the sign up process, including:
 - Purchase Links
-- 
+- Lab Connection Kit
+- Materials
+  - Training Guide
+  - Training Videos
+
+Save these materials to a safe location, then make an extra backup.  Getting additional copies of these materials requires support from OffSec, additional fees, or both.
 
 ### Starting the VM
 
