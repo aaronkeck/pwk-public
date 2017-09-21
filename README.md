@@ -46,6 +46,12 @@ openvpn OS-XXXXX-PWK.ovpn
 ### Quality of Life
 Here's a few helpful configuration steps that may make your life easier. Purely optional, so feel free to ignore or customize as you see fit. 
 
+#### Copy/Pasting
+This isn't a configuration step as much as a quick tip.  To copy/paste into and out of the Kali terminal, you'll want to add `SHIFT` to your usual shortcuts.  
+
+- Copy: `Ctrl+Shift+C`
+- Paste: `Ctrl+Shift+V`
+
 #### Shared Folders
 I like to use shared folders to easily transfer information in and out of the Kali VM.  I also store my notes in the shared folder so I can easily edit them from in either environment.  
 
@@ -66,6 +72,47 @@ Lastly, to mount the folder automatically each time you sign in, link `mount-sha
 
 ```bash
 root@kali:~# ln -s /root/Desktop/mount-shared-folders.sh /etc/profile.d/
+```
+
+#### Easier VPN Access
+Typing out the full VPN connection command prior to each session can be awkward, and entering the random password is a bit of a pain too.  While saving passwords is generally a 'bad idea', this shouldn't introduce too much risk.
+
+First, make a copy of your VPN file.  You might name it something like `OS-XXXX-PWK.ovpn.bak`, but I named mine `offsec.ovpn` for simplicity.  Next, create a new file (I called mine `credentials.txt`).  The file should have two lines.  The first line is your username (probably your `OS-XXXX` identifier).  The second line is your assigned VPN password.  We're do care at least a little about security, so restrict permissions on the file:
+
+```bash
+$ chmod 600 ~/credentials.txt
+```
+
+Then, edit your `ovpn` file, and change the line:
+
+```
+auth-user-pass
+```
+
+to now read:
+
+```
+auth-user-pass ~/credentials.txt
+```
+
+Test your new connection, no password needed:
+
+```bash
+root@kali:~# openvpn ~/offsec.ovpn
+```
+
+**Extra credit:**  Are you extra lazy?  Don't like to leave a terminal open to run the VPN?  Configure aliases to connect and disconnect with one command each.
+
+```bash
+root@kali:~# echo alias connect=\"openvpn /root/offsec.ovpn&\" >> ~/.bash_aliases
+root@kali:~# echo alias disconnect=\"killall openvpn\" >> ~/.bash_aliases
+```
+
+#### Easier RDP Access
+A lot of the lab involves accessing your personal Windows 7 system via RDP.  The system has to be booted via the Student Control Panel first, but you can condense your connection command down to `rdp` with this:
+
+```bash
+root@kali:~# echo alias rdp=\"rdesktop -u **user** -p **password** 10.X.X.X\"
 ```
 
 ## Reporting
